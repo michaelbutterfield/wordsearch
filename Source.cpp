@@ -12,7 +12,7 @@ using namespace std;
 const int wordsearchLines = 4;
 const int wordsearchSize = 14;			//Make the sizes global variables so they don't have to be passed through all the functions- Saves a lot of headache
 const int wordphraseSize = 48;			//Make the sizes global variables so they don't have to be passed through all the functions- Saves a lot of headache
-//Arrays
+										//Arrays
 char wordSearch[wordsearchLines][wordsearchSize];		//Make the arrays global variables so they aren't determind by scope, meaning I'd have to create multiple arrays and read the file into multiple arrays
 char searchPhrase[wordphraseSize];		//Make the arrays global variables so they aren't determind by scope, meaning I'd have to create multiple arrays and read the file into multiple arrays
 int arr[wordphraseSize]{ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47 };
@@ -21,14 +21,14 @@ int arr[wordphraseSize]{ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 1
 //Wordsearch Title
 string wordsearchtitleOne = "-----WORDSEARCH PUZZLE------\n";	//Above the wordsearch to indicate such to the user
 string wordsearchtitleTwo = "----------------------------\n";	//Buffer to make console look prettier
-//Wordsearch phrases title
+																//Wordsearch phrases title
 string wordsearchphrasestitleOne = "-----WORDSEARCH PHRASES-----\n";	//Above the wordsearch phrases to show user what has been found in the wordsearch
 string wordsearchphrasestitleTwo = "----------------------------\n";	//Buffer to make the console look prettier
-//Found strings
+																		//Found strings
 string foundLine = " Found - Line ";	//These are used within the found statement when a word
 string location = " Location ";			//has been located by the algorithm, it indicates the word that has been found,
 string notFound = " Not Found...";		//the location and line it is on so you can trace the location
-//Space
+										//Space
 string space = " ";
 //Trademark strings
 string trademarklineOne = "--CO1401 Puzzle Assignment--\n";		//"trademark" - showing who made the program and peronsal information
@@ -39,17 +39,17 @@ string WordsearchInfile = "text2D.txt";		//string holding the name of the wordse
 string wordphrasesInfile = "search2D.txt";	//string holding the name of the wordsearch phrases text file, used to indicate which file has the information in to retrieve - char by char
 string error = "ERROR: ";					//When the file can't be found, indicate it to the user
 string cantOpen = "Can't open input file\n";//File not found, display problem
-//CHAR
+											//CHAR
 char speechMark = '"';						//Used around the word found
 
-//NULL
+											//NULL
 int null = 0;	//0
 
-//NUMBERS
+				//NUMBERS
 int one = 1;	//To plus one to the wordsearch algorith to check the next/previous character in the same row or next/previous line
 int two = 2;	//To plus one to the wordsearch algorith to check the next/previous character in the same row or next/previous line
 
-//Structure to hold the characters
+				//Structure to hold the characters
 struct animal {
 	char one;
 	char two;
@@ -78,15 +78,15 @@ void ExistsInArray(char charOne, char charTwo, char charThree);
 int main()
 {
 	Trademark();		//Display personal information of whose program it is
-	
+
 	SingleLineGap();	//Gap in console
-	
+
 	WordsearchFile();	//Functions to obtain both the word search and phrases
 	WordsearchPhrases();
 
 	WordsearchTitle();	//Display the title showing the user that this is the wordsearch being run through by the algorithm
 
-	//Display the wordsearch	
+						//Display the wordsearch	
 	for (int j = null; j < wordsearchLines; j++)	//-- Double nested for loop for displaying the 2D array
 	{												// Run through each row 0-3
 		SingleLineGap();
@@ -97,15 +97,15 @@ int main()
 	}
 
 	DoubleGapSpace();								//Gap in console (make it look prettier and more viewable)
-	
-	//------PURELY FOR TESTING------
-	//This displays the phrases by themselves without running the algorithm, read in character by character
-	/*for (int i = null; i < wordphraseSize; i++)
-	{
-	cout << searchPhrase[i];
-	}*/
 
-	//Animal Structures										//I've put all the animals into structures in order to be able to search character by character
+													//------PURELY FOR TESTING------
+													//This displays the phrases by themselves without running the algorithm, read in character by character
+													/*for (int i = null; i < wordphraseSize; i++)
+													{
+													cout << searchPhrase[i];
+													}*/
+
+													//Animal Structures										//I've put all the animals into structures in order to be able to search character by character
 	animal Dog = {											//And partition each of the search phrases singularly
 		{ searchPhrase[arr[0]] },		//-D
 		{ searchPhrase[arr[1]] },		//-O				//I used structures and functions as it allows expandability- More words to add to the wordsearch? -- SHOULD HAVE USED VECTORS
@@ -207,7 +207,7 @@ int main()
 	SingleLineGap();					// Small gap in console- make the console look prettier
 
 
-	//Call the functions to search the wordsearch
+										//Call the functions to search the wordsearch
 	ExistsInArray(Dog.one, Dog.two, Dog.three);		//Search for Dog- Passes through the wordsearch needed and each of the characters in order to verify it is infact the word
 	ExistsInArray(Pig.one, Pig.two, Pig.three);		//Search for Pig- Passes through the wordsearch needed and each of the characters in order to verify it is infact the word
 	ExistsInArray(Cat.one, Cat.two, Cat.three);		//Search for Cat- Passes through the wordsearch needed and each of the characters in order to verify it is infact the word
@@ -280,7 +280,7 @@ void WordsearchFile()
 void WordsearchPhrases()
 {
 	ifstream infile(wordphrasesInfile);				//Opens text file
-	//infile.open("C:\\Users\\Michael\\Desktop\\WS V2.0\\search1.txt");
+													//infile.open("C:\\Users\\Michael\\Desktop\\WS V2.0\\search1.txt");
 	if (!infile)									//if it can't open the file for any reason
 	{
 		cout << error;								//Display an error message
@@ -302,24 +302,18 @@ void ExistsInArray(char charOne, char charTwo, char charThree)
 	bool found = false;										//Create a local bool of false as its only needed in this function- Efficiency
 	int i;													//Global local variable within the scope, allows the location of the word to be used anywhere in the function
 
-	//FORWARDS
+															//FORWARDS
 	for (int j = null; j < wordsearchLines; j++)
 	{
 		for (i = null; i < wordsearchSize && found == false; i++)	//The addition of found == false allows the function to stop going through the for loop as soon as the word has been found
 		{
 			if (i > null && i < wordsearchSize)				//For when you want to search both forwards and backwards- Won't go out of the array
 			{
-				if (wordSearch[j][i] == charOne)
+				if (wordSearch[j][i] == charOne && wordSearch[j][i + one] == charTwo && wordSearch[j][i + two] == charThree)
 				{
-					if (wordSearch[j][i + one] == charTwo)
-					{
-						if (wordSearch[j][i + two] == charThree)
-						{
 							cout << speechMark << charOne << charTwo << charThree << speechMark << foundLine << j + one << location << i << endl;
 							found = true;					// IF FOUND - Bool changes to true -breaks out of function and displays that the word has been fonud with the location and line
 							break;							//Breaks out of the function sooner- Meaning it won't display found & not found
-						}
-					}
 				}
 			}
 		}
@@ -332,17 +326,11 @@ void ExistsInArray(char charOne, char charTwo, char charThree)
 		{
 			if (i > null && i < wordsearchSize)				//For when you want to search both forwards and backwards- Won't go out of the array
 			{
-				if (wordSearch[j][i] == charOne)
+				if (wordSearch[j][i] == charOne && wordSearch[j][i - one] == charTwo && wordSearch[j][i - two] == charThree)
 				{
-					if (wordSearch[j][i - one] == charTwo)
-					{
-						if (wordSearch[j][i - two] == charThree)
-						{
 							cout << speechMark << charOne << charTwo << charThree << speechMark << foundLine << j + one << location << i << endl;
 							found = true;					// IF FOUND - Bool changes to true -breaks out of function and displays that the word has been fonud with the location and line
 							break;							//Breaks out of the function sooner- Meaning it won't display found & not found
-						}
-					}
 				}
 			}
 		}
@@ -355,17 +343,12 @@ void ExistsInArray(char charOne, char charTwo, char charThree)
 		{
 			if (i > null && i < wordsearchSize)				//For when you want to search both forwards and backwards- Won't go out of the array
 			{
-				if (wordSearch[j][i] == charOne)
+				if (wordSearch[j][i] == charOne && wordSearch[j + one][i] == charTwo && wordSearch[j + two][i] == charThree)
 				{
-					if (wordSearch[j + one][i] == charTwo)
-					{
-						if (wordSearch[j + two][i] == charThree)
-						{
+
 							cout << speechMark << charOne << charTwo << charThree << speechMark << foundLine << j + one << location << i << endl;
 							found = true;					// IF FOUND - Bool changes to true -breaks out of function and displays that the word has been fonud with the location and line
 							break;							//Breaks out of the function sooner- Meaning it won't display found & not found
-						}
-					}
 				}
 			}
 		}
@@ -378,17 +361,11 @@ void ExistsInArray(char charOne, char charTwo, char charThree)
 		{
 			if (i > null && i < wordsearchSize)				//For when you want to search both forwards and backwards- Won't go out of the array
 			{
-				if (wordSearch[j][i] == charOne)
+				if (wordSearch[j][i] == charOne && wordSearch[j - one][i] == charTwo && wordSearch[j - two][i] == charThree)
 				{
-					if (wordSearch[j - one][i] == charTwo)
-					{
-						if (wordSearch[j - two][i] == charThree)
-						{
 							cout << speechMark << charOne << charTwo << charThree << speechMark << foundLine << j + one << location << i << endl;
 							found = true;					// IF FOUND - Bool changes to true -breaks out of function and displays that the word has been fonud with the location and line
 							break;							//Breaks out of the function sooner- Meaning it won't display found & not found
-						}
-					}
 				}
 			}
 		}
@@ -401,17 +378,11 @@ void ExistsInArray(char charOne, char charTwo, char charThree)
 		{
 			if (i > null && i < wordsearchSize)				//For when you want to search both forwards and backwards- Won't go out of the array
 			{
-				if (wordSearch[j][i] == charOne)
+				if (wordSearch[j][i] == charOne && wordSearch[j + one][i + one] == charTwo && wordSearch[j + two][i + two] == charThree)
 				{
-					if (wordSearch[j + one][i + one] == charTwo)
-					{
-						if (wordSearch[j + two][i + two] == charThree)
-						{
 							cout << speechMark << charOne << charTwo << charThree << speechMark << foundLine << j + one << location << i << endl;
 							found = true;					// IF FOUND - Bool changes to true -breaks out of function and displays that the word has been fonud with the location and line
 							break;							//Breaks out of the function sooner- Meaning it won't display found & not found
-						}
-					}
 				}
 			}
 		}
@@ -424,17 +395,11 @@ void ExistsInArray(char charOne, char charTwo, char charThree)
 		{
 			if (i > null && i < wordsearchSize)				//For when you want to search both forwards and backwards- Won't go out of the array
 			{
-				if (wordSearch[j][i] == charOne)
+				if (wordSearch[j][i] == charOne && wordSearch[j + one][i - one] == charTwo && wordSearch[j + two][i - two] == charThree)
 				{
-					if (wordSearch[j + one][i - one] == charTwo)
-					{
-						if (wordSearch[j + two][i - two] == charThree)
-						{
 							cout << speechMark << charOne << charTwo << charThree << speechMark << foundLine << j + one << location << i << endl;
 							found = true;					// IF FOUND - Bool changes to true -breaks out of function and displays that the word has been fonud with the location and line
 							break;							//Breaks out of the function sooner- Meaning it won't display found & not found
-						}
-					}
 				}
 			}
 		}
@@ -447,17 +412,11 @@ void ExistsInArray(char charOne, char charTwo, char charThree)
 		{
 			if (i > null && i < wordsearchSize)				//For when you want to search both forwards and backwards- Won't go out of the array
 			{
-				if (wordSearch[j][i] == charOne)
+				if (wordSearch[j][i] == charOne && wordSearch[j + one][i] == charTwo && wordSearch[j + one][i - one] == charThree)
 				{
-					if (wordSearch[j + one][i] == charTwo)
-					{
-						if (wordSearch[j + one][i - one] == charThree)
-						{
 							cout << speechMark << charOne << charTwo << charThree << speechMark << foundLine << j + one << location << i << endl;
 							found = true;					// IF FOUND - Bool changes to true -breaks out of function and displays that the word has been fonud with the location and line
 							break;							//Breaks out of the function sooner- Meaning it won't display found & not found
-						}
-					}
 				}
 			}
 		}
@@ -470,17 +429,11 @@ void ExistsInArray(char charOne, char charTwo, char charThree)
 		{
 			if (i > null && i < wordsearchSize)			//For when you want to search both forwards and backwards- Won't go out of the array
 			{
-				if (wordSearch[j][i] == charOne)
+				if (wordSearch[j][i] == charOne && wordSearch[j + one][i] == charTwo && wordSearch[j + one][i + one] == charThree)
 				{
-					if (wordSearch[j + one][i] == charTwo)
-					{
-						if (wordSearch[j + one][i + one] == charThree)
-						{
 							cout << speechMark << charOne << charTwo << charThree << speechMark << foundLine << j + one << location << i << endl;
 							found = true;						// IF FOUND - Bool changes to true -breaks out of function and displays that the word has been fonud with the location and line
 							break;								//Breaks out of the function sooner- Meaning it won't display found & not found
-						}
-					}
 				}
 			}
 		}
@@ -493,17 +446,11 @@ void ExistsInArray(char charOne, char charTwo, char charThree)
 		{
 			if (i > null && i < wordsearchSize)					//For when you want to search both forwards and backwards- Won't go out of the array
 			{
-				if (wordSearch[j][i] == charOne)
+				if (wordSearch[j][i] == charOne && wordSearch[j][i + one] == charTwo && wordSearch[j + one][i + one] == charThree)
 				{
-					if (wordSearch[j][i + one] == charTwo)
-					{
-						if (wordSearch[j + one][i + one] == charThree)
-						{
 							cout << speechMark << charOne << charTwo << charThree << speechMark << foundLine << j + one << location << i << endl;
 							found = true;						// IF FOUND - Bool changes to true -breaks out of function and displays that the word has been fonud with the location and line
-							break;								//Breaks out of the function sooner- Meaning it won't display found & not found
-						}
-					}
+							break;								//Breaks out of the function sooner- Meaning it won't display found & not found				
 				}
 			}
 		}
@@ -516,17 +463,11 @@ void ExistsInArray(char charOne, char charTwo, char charThree)
 		{
 			if (i > null && i < wordsearchSize)					//For when you want to search both forwards and backwards- Won't go out of the array
 			{
-				if (wordSearch[j][i] == charOne)
+				if (wordSearch[j][i] == charOne && wordSearch[j][i - one] == charTwo && wordSearch[j + one][i - one] == charThree)
 				{
-					if (wordSearch[j][i - one] == charTwo)
-					{
-						if (wordSearch[j + one][i - one] == charThree)
-						{
 							cout << speechMark << charOne << charTwo << charThree << speechMark << foundLine << j + one << location << i << endl;
 							found = true;						// IF FOUND - Bool changes to true -breaks out of function and displays that the word has been fonud with the location and line
 							break;								//Breaks out of the function sooner- Meaning it won't display both found & not found
-						}
-					}
 				}
 			}
 		}
@@ -540,7 +481,7 @@ void ExistsInArray(char charOne, char charTwo, char charThree)
 
 void WordsearchTitle()				//Function to display the title above the wordsearch
 {
-	cout << wordsearchtitleOne;		
+	cout << wordsearchtitleOne;
 	cout << wordsearchtitleTwo;
 }
 
